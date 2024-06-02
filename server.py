@@ -18,20 +18,20 @@ def emo_detector():
         to the HTML interface as a formatted text, displaying each emotion's score
         and also the dominant emotion.
     '''
-    # Param from index.html
-    text_to_analyze = request.args.get('textToAnalyze')
+    text_to_analyze = request.args.get('textToAnalyze') # Param from index.html
+
     resp = detect(text_to_analyze)
 
     if resp['dominant_emotion'] is None:
         return "Invalid text! Please try again!"
 
-    return "For the given statement, the system response is " \
-            + f"'anger': {resp['anger']}, " \
-            + f"'disgust': {resp['disgust']}, " \
-            + f"'fear': {resp['fear']}, " \
-            + f"'joy': {resp['joy']}, and " \
-            + f"'sadness': {resp['sadness']}. " \
-            + f"The dominant emotion is {resp['dominant_emotion']}."
+    return f"For the given statement, the system response is \
+            'anger': {resp['anger']}, \
+            'disgust': {resp['disgust']}, \
+            'fear': {resp['fear']}, \
+            'joy': {resp['joy']}, and \
+            'sadness': {resp['sadness']}. \
+            The dominant emotion is {resp['dominant_emotion']}."
 
 @app.route("/")
 def render_index_page():
