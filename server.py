@@ -1,5 +1,5 @@
 # Import the libraries and packages
-from flask import Flask, render_template, request, 
+from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector as detect
 
 #Initiate the flask app
@@ -9,11 +9,8 @@ app = Flask("Emotion Detector")
 def emo_detector():
     # Param from index.html
     text_to_analyze = request.args.get('textToAnalyze')
-    if text_to_analyze == '':
-        return "Please enter some text."
     resp = detect(text_to_analyze)
-    if resp is None:
-        return "Invalid input! Please try again."
+
     return f"For the given statement, the system response is " \
             + f"'anger': {resp['anger']}, " \
             + f"'disgust': {resp['disgust']}, " \
